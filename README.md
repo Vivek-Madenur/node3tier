@@ -44,5 +44,5 @@ docker network connect app-newtrok api
 docker network connect app-newtrok web
 ```
 
-9. Now you can access both the containers successfully
+9. Now you can access both the containers successfully.
 
