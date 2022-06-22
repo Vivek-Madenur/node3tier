@@ -33,7 +33,10 @@ RUN npm install
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY . .
+COPY /api .
+
+RUN pwd
+RUN ls
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
