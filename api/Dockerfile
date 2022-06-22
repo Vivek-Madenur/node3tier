@@ -10,7 +10,7 @@ ENV DBHOST=
 ENV DBPORT=5432
 ENV PORT=3000
 
-RUN git clone https://github.com/jahio/hello-world-node-express.git
+RUN git clone https://github.com/Vivek-Madenur/node3tier.git
 WORKDIR /usr/src/app/api
 
 # Install app dependencies
