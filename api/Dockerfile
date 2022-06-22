@@ -11,7 +11,7 @@ ENV DBPORT=5432
 ENV PORT=3000
 
 RUN git clone https://github.com/Vivek-Madenur/node3tier.git
-WORKDIR /usr/src/app/api
+WORKDIR /usr/src/app/node3tier/api
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
