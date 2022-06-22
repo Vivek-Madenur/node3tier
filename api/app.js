@@ -8,7 +8,13 @@ const conString = {
     database: process.env.DB,
     password: process.env.DBPASS,
     host: process.env.DBHOST,
-    port: process.env.DBPORT                
+    port: process.env.DBPORT
+    
+    // user: "postgres",
+    // database: "postgres",
+    // password: "",
+    // host: "",
+    // port: "5432"                
 };
 
 // Routes
