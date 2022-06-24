@@ -19,7 +19,10 @@ const conString = {
 
 // Routes
 app.get('/api/status', function(req, res) {
-//'SELECT now() as time', [], function(err, result
+
+  console.error('*** conString in /api/status is ' + conString);
+
+  //'SELECT now() as time', [], function(err, result
   
   const Pool = require('pg').Pool
   const pool = new Pool(conString)
