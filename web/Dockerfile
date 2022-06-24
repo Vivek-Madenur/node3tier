@@ -1,5 +1,8 @@
 FROM node:16
 
+ARG _PORT
+ARG _API_HOST
+
 # Create app directory
 WORKDIR /usr/src/app
 

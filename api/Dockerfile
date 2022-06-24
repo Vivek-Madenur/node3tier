@@ -1,5 +1,12 @@
 FROM node:16
 
+ARG _DBUSER
+ARG _DB
+ARG _DBPASS
+ARG _DBHOST
+ARG _DBPORT
+ARG _PORT
+
 # Create app directory
 WORKDIR /usr/src/app
 
