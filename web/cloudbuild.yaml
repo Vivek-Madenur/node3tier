@@ -1,7 +1,12 @@
 steps:
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}', '-f', '${_DOCKERFILE_PATH}', '.' ]
+  args: [ 'build', 
+          '--build-arg', 'PORT=${_PORT}',
+          '--build-arg', 'API_HOST=${_API_HOST}',
+          '-t', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}', 
+          '-f', '${_DOCKERFILE_PATH}', 
+          '.' ]
 - id: Push Image
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}']
