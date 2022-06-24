@@ -15,5 +15,6 @@ steps:
   args:
   - run
   - --filename=./web/k8s-web.yaml
+  - --image=${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}

@@ -15,11 +15,12 @@ steps:
           '.' ]
 - id: Push Image
   name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}']
+  args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest']
 - id: Deploy to GKE
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=./api/k8s-api.yaml
+  - --image=${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}
