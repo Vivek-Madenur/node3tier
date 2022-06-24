@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
- console.error('--- Starting www ---');
+ console.info('--- Starting www ---');
 
 var app = require('../app');
 var debug = require('debug')('ldv:server');

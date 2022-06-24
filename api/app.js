@@ -27,6 +27,12 @@ app.get('/api/status', function(req, res) {
   console.info('host = ' + conString.host)
   console.info('port = ' + conString.port)
 
+  console.debug('debug');
+  console.info('info');
+  console.warn('warn');
+  console.error('error');
+  console.log('log');
+
   //'SELECT now() as time', [], function(err, result
   
   const Pool = require('pg').Pool
