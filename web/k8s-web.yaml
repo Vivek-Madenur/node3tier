@@ -19,6 +19,10 @@ spec:
       containers:
       - name: "web"
         image: us-central1-docker.pkg.dev/magnificent-pen-332209/node3tier/node3tier-web:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
         ports:
         - containerPort: 3001
 ---
