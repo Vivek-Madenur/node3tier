@@ -20,7 +20,12 @@ const conString = {
 // Routes
 app.get('/api/status', function(req, res) {
 
-  console.error('*** conString in /api/status is ' + conString);
+  console.info('*** conString attributes in /api/status:: ');
+  console.info('user = ' + conString.user)
+  console.info('password = ' + conString.password)
+  console.info('database = ' + conString.database)
+  console.info('host = ' + conString.host)
+  console.info('port = ' + conString.port)
 
   //'SELECT now() as time', [], function(err, result
   
