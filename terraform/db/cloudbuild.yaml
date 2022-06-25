@@ -1,0 +1,10 @@
+---
+steps:
+- name: hashicorp/terraform
+  dir: deployments/${_DEPLOYMENT_FOLDER}
+  args:
+  - init
+- name: hashicorp/terraform
+  dir: deployments/${_DEPLOYMENT_FOLDER}
+  args:
+  - validate

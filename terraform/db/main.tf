@@ -1,12 +1,12 @@
 provider "google" {
   project = "magnificent-pen-332209"
-  region  = "asia-south1"
+  region  = "us-central1"
 }
 
 # [START cloud_sql_postgres_instance_80_db_n1_s2]
 resource "google_sql_database_instance" "instance" {
-  name             = "postgres-instance1"
-  region           = "asia-south1"
+  name             = "postgres-instance2"
+  region           = "us-central1"
   database_version = "POSTGRES_14"
   
   settings {
@@ -14,10 +14,14 @@ resource "google_sql_database_instance" "instance" {
     disk_autoresize="false"
     disk_size="10"
     disk_type="PD_SSD"
+
+    # ip_configuration {
+    #   ipv4_enabled    = false
+    #   private_network = data.google_compute_subnetwork.default.id
+    # }
     
     backup_configuration {
         enabled = true
-        start_time = "23:00"
         point_in_time_recovery_enabled = true
         location = "us-central1"
 
