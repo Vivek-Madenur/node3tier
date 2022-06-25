@@ -16,6 +16,7 @@ spec:
       labels:
         app: "api"
     spec:
+      serviceAccountName: ksa-api
       containers:
       - name: "api"
         image: us-central1-docker.pkg.dev/magnificent-pen-332209/node3tier/node3tier-api:latest
