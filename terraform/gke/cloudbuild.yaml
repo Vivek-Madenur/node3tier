@@ -1,19 +1,19 @@
 ---
 steps:
 - name: hashicorp/terraform
-  dir: deployments/${_DEPLOYMENT_FOLDER}
+  dir: ${_DEPLOYMENT_FOLDER}
   args:
   - init
 - name: hashicorp/terraform
-  dir: deployments/${_DEPLOYMENT_FOLDER}
+  dir: ${_DEPLOYMENT_FOLDER}
   args:
   - validate
 - name: hashicorp/terraform
-  dir: deployments/${_DEPLOYMENT_FOLDER}
+  dir: ${_DEPLOYMENT_FOLDER}
   args:
   - plan
 - name: hashicorp/terraform
-  dir: deployments/${_DEPLOYMENT_FOLDER}
+  dir: ${_DEPLOYMENT_FOLDER}
   args:
   - apply
   - -auto-approve
