@@ -1,20 +1,20 @@
 ---
 steps:
-- name: hashicorp/terraform
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - init
-- name: hashicorp/terraform
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - validate
-- name: hashicorp/terraform
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - plan
   - -input=false
   - -out=tfplan
-# - name: hashicorp/terraform
+# - name: gcr.io/$PROJECT_ID/terraform
 #   dir: ${_DEPLOYMENT_FOLDER}
 #   args:
 #   - apply
