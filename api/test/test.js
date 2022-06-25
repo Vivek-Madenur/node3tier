@@ -4,11 +4,11 @@ const assert = require('assert');
 // We can group similar tests inside a describe block
 describe("Simple Calculations", () => {
     before(() => {
-        console.log("**********WEB TESTING BEGIN***********");
+        console.log("**********API TESTING BEGIN***********");
     });
 
     after(() => {
-        console.log("**********WEB TESTING END***********");
+        console.log("**********API TESTING END***********");
     });
 
     // We can add nested blocks for different tests

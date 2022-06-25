@@ -1,4 +1,10 @@
 steps:
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'web', 'install']
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'web', 'test']
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', 

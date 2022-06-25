@@ -1,10 +1,10 @@
 steps:
 - name: node
   entrypoint: npm
-  args: ['--prefix', 'web', 'install']
+  args: ['--prefix', 'api', 'install']
 - name: node
   entrypoint: npm
-  args: ['--prefix', 'web', 'test']
+  args: ['--prefix', 'api', 'test']
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', 
@@ -34,11 +34,3 @@ steps:
   - --image=${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}
-- id: Auth proxy binding
-  name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: "/bin/sh"
-  args: ['-c', 'gcloud iam service-accounts add-iam-policy-binding --role="roles/iam.workloadIdentityUser" --member="serviceAccount:magnificent-pen-332209.svc.id.goog[default/ksa-api]" myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com']
-- id: Auth proxy annotate
-  name: 'gcr.io/cloud-builders/gke-deploy'
-  entrypoint: "/bin/sh"
-  args: ['-c', 'kubectl annotate serviceaccount ksa-api iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com']
