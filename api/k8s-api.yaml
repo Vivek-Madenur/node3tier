@@ -25,6 +25,17 @@ spec:
             cpu: "100m"
         ports:
         - containerPort: 3000
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.28.0
+        command:
+          - "/cloud_sql_proxy"
+          - "-instances=magnificent-pen-332209:us-central1:postgres-instance2=tcp:5432"
+        securityContext:
+          runAsNonRoot: true
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service
