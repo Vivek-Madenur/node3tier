@@ -19,6 +19,6 @@ variable "gke_min_num_nodes" {
 }
 
 variable "gke_max_num_nodes" {
-  default     = 2
+  default     = 1
   description = "max number of gke nodes"
 }

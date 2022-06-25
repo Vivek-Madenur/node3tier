@@ -1,5 +1,10 @@
 steps:
-
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'web', 'install']
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'web', 'test']
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', 
@@ -14,16 +19,13 @@ steps:
           '-f', 
           '${_DOCKERFILE_PATH}', 
           '.' ]
-
 - id: Push Image
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest']
-
 # - id: Customise K8s yaml
 #   name: 'gcr.io/cloud-builders/gcloud'
 #   entrypoint: "/bin/sh"
 #   args: ['-c', 'cat ./api/k8s-api.yaml | sed s/{{attribute-to-replace}}/${_VAR-FROM-TRIGGER}/g > custom.yaml']
-
 - id: Deploy to GKE
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -32,12 +34,10 @@ steps:
   - --image=${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}
-
 - id: Auth proxy binding
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: "/bin/sh"
   args: ['-c', 'gcloud iam service-accounts add-iam-policy-binding --role="roles/iam.workloadIdentityUser" --member="serviceAccount:magnificent-pen-332209.svc.id.goog[default/ksa-api]" myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com']
-
 - id: Auth proxy annotate
   name: 'gcr.io/cloud-builders/gke-deploy'
   entrypoint: "/bin/sh"

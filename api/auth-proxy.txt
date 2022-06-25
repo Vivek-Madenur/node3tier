@@ -1,0 +1,21 @@
+# https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ksa-api
+
+
+gcloud container clusters update magnificent-pen-332209-gke \
+    --region=us-central1 \
+    --workload-pool=magnificent-pen-332209.svc.id.goog
+
+
+gcloud iam service-accounts add-iam-policy-binding \
+--role="roles/iam.workloadIdentityUser" \
+--member="serviceAccount:magnificent-pen-332209.svc.id.goog[default/ksa-api]" \
+myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
+
+
+kubectl annotate serviceaccount \
+ksa-api \
+iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
