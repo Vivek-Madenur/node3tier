@@ -1,4 +1,9 @@
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ksa-api
+---
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -69,8 +74,3 @@ spec:
     resource:
       name: "cpu"
       targetAverageUtilization: 80
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: ksa-api
