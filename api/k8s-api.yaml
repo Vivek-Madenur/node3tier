@@ -12,7 +12,7 @@ metadata:
   labels:
     app: "api"
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: "api"
@@ -40,7 +40,7 @@ spec:
           runAsNonRoot: true
         resources:
           limits:
-            memory: "64Mi"
+            memory: "32Mi"
             cpu: "100m"
 ---
 apiVersion: v1
