@@ -1,14 +1,13 @@
 # https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: ksa-api
 
+*** The below command is not needed if workload-pool is enabled in terraform. In future releases Google plans to enable it by default ***
 
 gcloud container clusters update magnificent-pen-332209-gke \
     --region=us-central1 \
     --workload-pool=magnificent-pen-332209.svc.id.goog
 
+
+*** Run the below 2 commands after the GK is created ***
 
 gcloud iam service-accounts add-iam-policy-binding \
 --role="roles/iam.workloadIdentityUser" \
@@ -21,6 +20,7 @@ ksa-api \
 iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 
 
+*** Use the below to integrate the above commands into cloudbuild.yaml ***
 # - id: Auth proxy binding
 #   name: 'gcr.io/cloud-builders/gcloud'
 #   entrypoint: "/bin/sh"

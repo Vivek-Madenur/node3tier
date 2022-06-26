@@ -12,7 +12,7 @@
 → npm start
 ```
 
-## NOTE this app uses two env variables:
+## NOTE this app uses below env variables:
 
 - PORT: the listening PORT
 - DB: Name of the database to connect
