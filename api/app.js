@@ -2,6 +2,29 @@ var express = require('express');
 var app = express();
 var uuid = require('node-uuid');
 
+const bunyan = require('bunyan');
+// Imports the Google Cloud client library for Bunyan
+const {LoggingBunyan} = require('@google-cloud/logging-bunyan');
+// Creates a Bunyan Cloud Logging client
+const loggingBunyan = new LoggingBunyan();
+// Create a Bunyan logger that streams to Cloud Logging
+// Logs will be written to: "projects/YOUR_PROJECT_ID/logs/bunyan_log"
+const logger = bunyan.createLogger({
+  // The JSON payload of the log as it appears in Cloud Logging
+  // will contain "name": "my-service"
+  name: 'node3tier-api',
+  streams: [
+    // Log to the console at 'info' and above
+    {stream: process.stdout, level: 'info'},
+    // And log to Cloud Logging, logging at 'info' and above
+    loggingBunyan.stream('info'),
+  ],
+});
+
+// Writes some log entries
+// logger.error('warp nacelles offline');
+// logger.info('shields at 99%');
+
 var pg = require('pg');
 const conString = {
     user: process.env.DBUSER,
@@ -27,12 +50,18 @@ app.get('/api/status', function(req, res) {
   console.info('host = ' + conString.host)
   console.info('port = ' + conString.port)
 
+  console.info('************************Console**********************');
   console.debug('debug');
   console.info('info');
   console.warn('warn');
   console.error('error');
-  console.log('log');
-
+  
+  logger.info('************************Logger**********************');
+  logger.debug('debug');
+  logger.info('info');
+  logger.warn('warn');
+  logger.error('error');
+  
   //'SELECT now() as time', [], function(err, result
   
   const Pool = require('pg').Pool
