@@ -2,12 +2,14 @@ FROM node:16
 
 ARG PORT
 ARG API_HOST
+ARG IMG_LINK
 
 # Create app directory
 WORKDIR /usr/src/app
 
 ENV PORT=${PORT}
 ENV API_HOST=${API_HOST}
+ENV IMG_LINK=${IMG_LINK}}
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied

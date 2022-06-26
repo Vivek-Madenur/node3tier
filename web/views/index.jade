@@ -3,5 +3,5 @@ extends layout
 block content
   h1= title
   p Welcome, it's #{time}
-  p: img(src="https://storage.googleapis.com/magnificent-pen-332209-1/sample.gif", title="nyan cat")
+  p: img(src="#{img_link}", title="nyan cat")
   pre #{request_uuid}

@@ -10,6 +10,7 @@ steps:
   args: [ 'build', 
           '--build-arg', 'PORT=${_PORT}',
           '--build-arg', 'API_HOST=${_API_HOST}',
+          '--build-arg', 'IMG_LINK=${_IMG_LINK}',
           '-t', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}', 
           '-f', '${_DOCKERFILE_PATH}', 
           '.' ]
