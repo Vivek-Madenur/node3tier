@@ -22,15 +22,15 @@ steps:
 - id: Push Image
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest']
-# - id: Customise K8s yaml
-#   name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: "/bin/sh"
-#   args: ['-c', 'cat ./api/k8s-api.yaml | sed s/{{attribute-to-replace}}/${_VAR-FROM-TRIGGER}/g > custom.yaml']
+- id: Customise K8s yaml
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: "/bin/sh"
+  args: ['-c', 'cat ./api/k8s-api.yaml | sed s/{{sql-instance}}/${_SQL_INSTANCE}/g > custom.yaml']
 - id: Deploy to GKE
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=./api/k8s-api.yaml
+  - --filename=custom.yaml
   - --image=${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}
