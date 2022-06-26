@@ -12,7 +12,7 @@ metadata:
   labels:
     app: "api"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: "api"
@@ -67,8 +67,8 @@ spec:
     kind: "Deployment"
     name: "api"
     apiVersion: "apps/v1"
-  minReplicas: 3
-  maxReplicas: 5
+  minReplicas: 1
+  maxReplicas: 1
   metrics:
   - type: "Resource"
     resource:
