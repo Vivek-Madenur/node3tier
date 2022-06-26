@@ -5,6 +5,7 @@ var request = require('request');
 
 var api_url = process.env.API_HOST + '/api/status';
 var input_img_link = process.env.IMG_LINK;
+console.info('************ input_img_link=' + input_img_link)
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,8 +21,8 @@ router.get('/', function(req, res, next) {
                 res.render('index', {
                     title: '3tier App - 26 Jun 2pm',
                     request_uuid: body[0].request_uuid,
-                    time: body[0].time,
-                    img_link: input_img_link
+                    img_link: input_img_link,
+                    time: body[0].time
                 });
             }
         }
