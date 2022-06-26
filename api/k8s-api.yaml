@@ -4,8 +4,8 @@ kind: ServiceAccount
 metadata:
   name: ksa-api
 ---
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: "api"
   namespace: "default"
@@ -40,7 +40,7 @@ spec:
           runAsNonRoot: true
         resources:
           limits:
-            memory: "32Mi"
+            memory: "64Mi"
             cpu: "100m"
 ---
 apiVersion: v1
