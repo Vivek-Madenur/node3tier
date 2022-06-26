@@ -40,7 +40,7 @@ spec:
           runAsNonRoot: true
         resources:
           limits:
-            memory: "64Mi"
+            memory: "128Mi"
             cpu: "100m"
 ---
 apiVersion: v1
