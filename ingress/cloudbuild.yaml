@@ -16,7 +16,7 @@ steps:
     --role="roles/iam.workloadIdentityUser" \
     --member="serviceAccount:magnificent-pen-332209.svc.id.goog[default/ksa-api]" \
     myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com &&
-    kubectl annotate serviceaccount \
+    kubectl annotate --overwrite serviceaccount \
     ksa-api \
     iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 - id: Deploy Ingress
