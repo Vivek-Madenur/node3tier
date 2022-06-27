@@ -39,16 +39,6 @@ spec:
             name: web-service-cip
             port:
               number: 3001
-  # - host: "*.NGINX_INGRESS_IP.nip.io"
-  #   http:
-  #     paths:
-  #     - pathType: Prefix
-  #       path: /
-  #       backend:
-  #         service:
-  #           name: web-service-cip
-  #           port:
-  #             number: 3001
   - host: "api.NGINX_INGRESS_IP.nip.io"
     http:
       paths:
@@ -67,6 +57,16 @@ spec:
         backend:
           service:
             name: web-cdn-service
+            port:
+              number: 3001
+  - host: "*.NGINX_INGRESS_IP.nip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: web-service-cip
             port:
               number: 3001
 
