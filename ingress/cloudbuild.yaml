@@ -1,0 +1,28 @@
+steps:
+- id: Deploy SA for Auth Proxy
+  name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=./api/auth-proxy-sa.yaml
+  - --location=${_GKE_LOCATION}
+  - --cluster=${_GKE_CLUSTER}
+- id: SQL Auth Proxy Config
+  name: "gcr.io/cloud-builders/gcloud"
+  entrypoint: /bin/bash
+  args:
+  - -c
+  - |
+    gcloud iam service-accounts add-iam-policy-binding \
+    --role="roles/iam.workloadIdentityUser" \
+    --member="serviceAccount:magnificent-pen-332209.svc.id.goog[default/ksa-api]" \
+    myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com &&
+    kubectl annotate serviceaccount \
+    ksa-api \
+    iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
+- id: Deploy Ingress
+  name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=./ingress/ingress.yaml
+  - --location=${_GKE_LOCATION}
+  - --cluster=${_GKE_CLUSTER}
