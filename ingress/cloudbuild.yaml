@@ -20,21 +20,23 @@ steps:
     ksa-api \
     iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 - id: Deploy Ingress
+  name: "gcr.io/cloud-builders/gcloud"
+  entrypoint: /bin/bash
+  args:
+  - -c
+  - |
+    echo helm repo add &&
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &&
+    echo helm repo update &&
+    helm repo update &&
+    echo helm install &&
+    helm install nginx-ingress ingress-nginx/ingress-nginx
+- id: Deploy Route
   name: "gcr.io/cloud-builders/gke-deploy"
   entrypoint: /bin/bash
   args:
   - -c
   - |
-    echo install helm
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 &&
-    chmod 700 get_helm.sh &&
-    ./get_helm.sh &&
-    echo helm repo add ingress-nginx &&
-    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &&
-    echo helm repo update &&
-    helm repo update &&
-    echo helm install &&
-    helm install nginx-ingress ingress-nginx/ingress-nginx &&
     echo ip &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     export _NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
