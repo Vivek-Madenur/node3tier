@@ -37,7 +37,7 @@ steps:
   args:
   - -c
   - |
-    apt-get update && apt-get install -y jq &&
+    apk add jq &&
     echo ip &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     export _NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
