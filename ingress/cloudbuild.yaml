@@ -20,15 +20,11 @@ steps:
     ksa-api \
     iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 - id: Deploy Ingress
-  name: "gcr.io/cloud-builders/gke-deploy"
+  name: "gcr.io/$PROJECT_ID/helm"
   entrypoint: /bin/bash
   args:
   - -c
   - |
-    echo install helm
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 &&
-    chmod 700 get_helm.sh &&
-    ./get_helm.sh &&
     echo helm repo add &&
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &&
     echo helm repo update &&
