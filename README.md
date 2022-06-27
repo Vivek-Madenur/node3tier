@@ -46,3 +46,9 @@ docker network connect app-newtrok web
 
 9. Now you can access both the containers successfully.
 
+
+
+## References
+
+- [Security scanning of docker image in Cloud Build] (https://cloud.google.com/container-analysis/docs/ods-cloudbuild)
+

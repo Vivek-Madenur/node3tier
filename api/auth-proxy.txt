@@ -19,6 +19,8 @@ kubectl annotate serviceaccount \
 ksa-api \
 iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 
+//set project if running from local --project magnificent-pen-332209
+//Also apply sa: kubectl apply -f ./api/auth-proxy-sa.yaml
 
 *** Use the below to integrate the above commands into cloudbuild.yaml ***
 # - id: Auth proxy binding

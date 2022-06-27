@@ -5,7 +5,7 @@ provider "google" {
 
 # [START cloud_sql_postgres_instance_80_db_n1_s2]
 resource "google_sql_database_instance" "instance" {
-  name             = "postgres-instance3"
+  name             = "postgres-instance4"
   region           = "us-central1"
   database_version = "POSTGRES_14"
   

@@ -27,8 +27,9 @@ Replace NGINX_INGRESS_IP in ingress.yaml and apply the file in k8s cluster
 kubectl apply -f ingress.yaml
 ```
 
+## References
 
-[Reference Documentation Google](https://cloud.google.com/community/tutorials/nginx-ingress-gke)
-[Reference Documentation Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [Reference Documentation Google](https://cloud.google.com/community/tutorials/nginx-ingress-gke)
+- [Reference Documentation Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 
 
