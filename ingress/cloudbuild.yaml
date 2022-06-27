@@ -20,7 +20,7 @@ steps:
     ksa-api \
     iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 - id: Deploy Ingress
-  name: "gcr.io/cloud-builders/gcloud"
+  name: "gcr.io/cloud-builders/gke-deploy"
   entrypoint: /bin/bash
   args:
   - -c
