@@ -38,6 +38,7 @@ steps:
   - -c
   - |
     apk add jq &&
+    gcloud container clusters get-credentials magnificent-pen-332209-gke --region us-central1 --project magnificent-pen-332209 &&
     echo ip &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     export _NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
