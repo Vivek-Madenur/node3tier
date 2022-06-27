@@ -42,7 +42,7 @@ steps:
     echo ip &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
-    echo NGINX_INGRESS_IP=$NGINX_INGRESS_IP &&
-    cat ./ingress/ingress.yaml | sed s/NGINX_INGRESS_IP/$NGINX_INGRESS_IP/g > custom.yaml &&
+    echo NGINX_INGRESS_IP=$(NGINX_INGRESS_IP) &&
+    cat ./ingress/ingress.yaml | sed s/NGINX_INGRESS_IP/$(NGINX_INGRESS_IP)/g > custom.yaml &&
     cat custom.yaml &&
     kubectl apply -f custom.yaml
