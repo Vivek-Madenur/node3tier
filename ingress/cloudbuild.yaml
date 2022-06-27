@@ -21,8 +21,19 @@ steps:
     iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 - id: Deploy Ingress
   name: "gcr.io/cloud-builders/gke-deploy"
+  entrypoint: /bin/bash
   args:
-  - run
-  - --filename=./ingress/ingress.yaml
-  - --location=${_GKE_LOCATION}
-  - --cluster=${_GKE_CLUSTER}
+  - -c
+  - |
+    echo helm repo add ingress-nginx &&
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &&
+    echo helm repo update &&
+    helm repo update &&
+    echo helm install &&
+    helm install nginx-ingress ingress-nginx/ingress-nginx &&
+    echo set env &&
+    export NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
+    echo NGINX_INGRESS_IP=$NGINX_INGRESS_IP &&
+    cat ./ingress/ingress.yaml | sed s/NGINX_INGRESS_IP/$NGINX_INGRESS_IP/g > custom.yaml &&
+    cat custom.yaml &&
+    kubectl apply -f custom.yaml
