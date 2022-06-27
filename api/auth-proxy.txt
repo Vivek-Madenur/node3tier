@@ -15,9 +15,9 @@ gcloud iam service-accounts add-iam-policy-binding \
 myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
 
 
-kubectl annotate serviceaccount \
+kubectl annotate --overwrite serviceaccount \
 ksa-api \
-iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com
+iam.gke.io/gcp-service-account=myterraformsa@magnificent-pen-332209.iam.gserviceaccount.com 
 
 //set project if running from local --project magnificent-pen-332209
 //Also apply sa: kubectl apply -f ./api/auth-proxy-sa.yaml

@@ -50,5 +50,9 @@ docker network connect app-newtrok web
 
 ## References
 
-- [Security scanning of docker image in Cloud Build] (https://cloud.google.com/container-analysis/docs/ods-cloudbuild)
+- [Security scanning of docker image in Cloud Build](https://cloud.google.com/container-analysis/docs/ods-cloudbuild)
+- [Google cloud-builders](https://cloud.google.com/build/docs/cloud-builders)
 
+- [Helm on Good cloud build CI](https://medium.com/google-cloud/gcp-gitops-style-cicd-with-cloud-build-to-deploy-helm-chart-to-gke-fa003b999b1e)
+- [Reference Documentation Google](https://cloud.google.com/community/tutorials/nginx-ingress-gke)
+- [Reference Documentation Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)

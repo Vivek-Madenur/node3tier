@@ -30,13 +30,14 @@ steps:
     echo helm repo update &&
     helm repo update &&
     echo helm install &&
-    helm install nginx-ingress ingress-nginx/ingress-nginx
+    helm upgrade --install nginx-ingress ingress-nginx/ingress-nginx
 - id: Deploy Route
   name: "gcr.io/cloud-builders/gke-deploy"
   entrypoint: /bin/bash
   args:
   - -c
   - |
+    apt-get update && apt-get install -y jq &&
     echo ip &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     export _NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
