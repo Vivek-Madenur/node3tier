@@ -1,10 +1,10 @@
 steps:
-- name: node
-  entrypoint: npm
-  args: ['--prefix', 'api', 'install']
-- name: node
-  entrypoint: npm
-  args: ['--prefix', 'api', 'test']
+# - name: node
+#   entrypoint: npm
+#   args: ['--prefix', 'api', 'install']
+# - name: node
+#   entrypoint: npm
+#   args: ['--prefix', 'api', 'test']
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', 
@@ -19,23 +19,23 @@ steps:
           '-f', 
           '${_DOCKERFILE_PATH}', 
           '.' ]
-- id: scan
-  name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  entrypoint: /bin/bash
-  args:
-  - -c
-  - |
-    gcloud artifacts docker images scan ${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest \
-    --format='value(response.scan)' > /workspace/scan_id.txt
-- id: severity check
-  name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  entrypoint: /bin/bash
-  args:
-  - -c
-  - |
-    gcloud artifacts docker images list-vulnerabilities $(cat /workspace/scan_id.txt) \
-    --format='value(vulnerability.effectiveSeverity)' | if grep -Fxq $_SCAN_SEVERITY; \
-    then echo 'Failed vulnerability check' && exit 1; else exit 0; fi
+# - id: scan
+#   name: gcr.io/google.com/cloudsdktool/cloud-sdk
+#   entrypoint: /bin/bash
+#   args:
+#   - -c
+#   - |
+#     gcloud artifacts docker images scan ${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest \
+#     --format='value(response.scan)' > /workspace/scan_id.txt
+# - id: severity check
+#   name: gcr.io/google.com/cloudsdktool/cloud-sdk
+#   entrypoint: /bin/bash
+#   args:
+#   - -c
+#   - |
+#     gcloud artifacts docker images list-vulnerabilities $(cat /workspace/scan_id.txt) \
+#     --format='value(vulnerability.effectiveSeverity)' | if grep -Fxq $_SCAN_SEVERITY; \
+#     then echo 'Failed vulnerability check' && exit 1; else exit 0; fi
 - id: Push Image
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_ARTIFACT_LOCATION}-docker.pkg.dev/${_GCP_PROJECT_ID}/${_ARTIFACT_REPO_NAME}/${_IMAGE_NAME}:latest']

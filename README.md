@@ -56,3 +56,4 @@ docker network connect app-newtrok web
 - [Helm on Good cloud build CI](https://medium.com/google-cloud/gcp-gitops-style-cicd-with-cloud-build-to-deploy-helm-chart-to-gke-fa003b999b1e)
 - [Reference Documentation Google](https://cloud.google.com/community/tutorials/nginx-ingress-gke)
 - [Reference Documentation Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [Managing infrastructure as code with Terraform, Cloud Build, and GitOps](https://cloud.google.com/architecture/managing-infrastructure-as-code)  [GitHub](https://github.com/GoogleCloudPlatform/solutions-terraform-cloudbuild-gitops)

@@ -1,25 +1,25 @@
 ---
 steps:
-- name: gcr.io/$PROJECT_ID/terraform
+- name: 'hashicorp/terraform:1.0.0'
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - init
-- name: gcr.io/$PROJECT_ID/terraform
+- name: 'hashicorp/terraform:1.0.0'
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - validate
-- name: gcr.io/$PROJECT_ID/terraform
+- name: 'hashicorp/terraform:1.0.0'
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - plan
   - -input=false
   - -out=tfplan
-- name: gcr.io/$PROJECT_ID/terraform
+- name: 'hashicorp/terraform:1.0.0'
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - apply
   - -auto-approve
-artifacts:
-  objects:
-    location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/plan/$BUILD_ID'
-    paths: ['cloudbuild-tf-plan.yaml', 'tfplan']
+# artifacts:
+#   objects:
+#     location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/plan/$BUILD_ID'
+#     paths: ['cloudbuild-tf-plan.yaml', 'tfplan']
