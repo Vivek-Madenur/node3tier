@@ -26,6 +26,7 @@ steps:
   - --filename=./ingress/cdn.yaml
   - --location=${_GKE_LOCATION}
   - --cluster=${_GKE_CLUSTER}
+  - --output=./cdn/output
 - id: Install Nginx Ingress
   name: "gcr.io/$PROJECT_ID/helm"
   entrypoint: /bin/bash
