@@ -50,17 +50,17 @@ app.get('/api/status', function(req, res) {
   console.info('host = ' + conString.host)
   console.info('port = ' + conString.port)
 
-  console.info('************************Console**********************');
-  console.debug('debug');
-  console.info('info');
-  console.warn('warn');
-  console.error('error');
+  // console.info('************************Console**********************');
+  // console.debug('debug');
+  // console.info('info');
+  // console.warn('warn');
+  // console.error('error');
   
-  logger.info('************************Logger**********************');
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warn');
-  logger.error('error');
+  // logger.info('************************Logger**********************');
+  // logger.debug('debug');
+  // logger.info('info');
+  // logger.warn('warn');
+  // logger.error('error');
   
   //'SELECT now() as time', [], function(err, result
   
@@ -77,7 +77,7 @@ app.get('/api/status', function(req, res) {
       console.log(err);
       return console.error('Error executing query', err.stack)
     }
-    res.status(200).send(result.rows);
+    res.status(200).send(result.rows + " Hi from API!");
   });
 });
 
