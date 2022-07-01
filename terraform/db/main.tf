@@ -3,40 +3,40 @@ provider "google" {
   region  = "us-central1"
 }
 
-resource "google_compute_network" "private_network" {
-  # provider = google-beta
+# resource "google_compute_network" "private_network" {
+#   # provider = google-beta
 
-  name = "private-network"
-}
+#   name = "private-network"
+# }
 
-resource "google_compute_global_address" "private_ip_address" {
-  # provider = google-beta
+# resource "google_compute_global_address" "private_ip_address" {
+#   # provider = google-beta
 
-  name          = "private-ip-address"
-  purpose       = "VPC_PEERING"
-  address_type  = "INTERNAL"
-  prefix_length = 16
-  network       = google_compute_network.private_network.id
-}
+#   name          = "private-ip-address"
+#   purpose       = "VPC_PEERING"
+#   address_type  = "INTERNAL"
+#   prefix_length = 16
+#   network       = google_compute_network.private_network.id
+# }
 
-resource "google_service_networking_connection" "private_vpc_connection" {
-  # provider = google-beta
+# resource "google_service_networking_connection" "private_vpc_connection" {
+#   # provider = google-beta
 
-  network                 = google_compute_network.private_network.id
-  service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
-}
+#   network                 = google_compute_network.private_network.id
+#   service                 = "servicenetworking.googleapis.com"
+#   reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
+# }
 
 
 # n/w end
 
 # [START cloud_sql_postgres_instance_80_db_n1_s2]
 resource "google_sql_database_instance" "instance" {
-  name             = "postgres-instance5"
+  name             = "postgres-instance6"
   region           = "us-central1"
   database_version = "POSTGRES_14"
 
-  depends_on = [google_service_networking_connection.private_vpc_connection]
+  # depends_on = [google_service_networking_connection.private_vpc_connection]
   
   settings {
     tier = "db-f1-micro"
@@ -44,11 +44,11 @@ resource "google_sql_database_instance" "instance" {
     disk_size="10"
     disk_type="PD_SSD"
 
-    ip_configuration {
-      ipv4_enabled    = false
-      private_network = google_compute_network.private_network.id
-      # public_ip_enabled = false
-    }
+    # ip_configuration {
+    #   ipv4_enabled    = false
+    #   private_network = google_compute_network.private_network.id
+    #   # public_ip_enabled = false
+    # }
     
     backup_configuration {
         enabled = true
