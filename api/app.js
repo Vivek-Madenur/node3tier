@@ -78,7 +78,7 @@ app.get('/api/status', function(req, res) {
       return console.error('Error executing query', err.stack)
     }
     
-    res.status(200).send("Hi from API!");
+    res.status(200).send(result.rows);
   });
 });
 
