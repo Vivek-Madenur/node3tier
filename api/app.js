@@ -27,17 +27,17 @@ const logger = bunyan.createLogger({
 
 var pg = require('pg');
 const conString = {
-    user: process.env.DBUSER,
-    database: process.env.DB,
-    password: process.env.DBPASS,
-    host: process.env.DBHOST,
-    port: process.env.DBPORT
+    // user: process.env.DBUSER,
+    // database: process.env.DB,
+    // password: process.env.DBPASS,
+    // host: process.env.DBHOST,
+    // port: process.env.DBPORT
     
-    // user: "postgres",
-    // database: "postgres",
-    // password: "",
-    // host: "",
-    // port: "5432"                
+    user: "user",
+    database: "postgres",
+    password: "user",
+    host: "34.132.36.146",
+    port: "5432"                
 };
 
 // Routes
@@ -77,7 +77,8 @@ app.get('/api/status', function(req, res) {
       console.log(err);
       return console.error('Error executing query', err.stack)
     }
-    res.status(200).send(result.rows + " Hi from API!");
+    
+    res.status(200).send("Hi from API!");
   });
 });
 
