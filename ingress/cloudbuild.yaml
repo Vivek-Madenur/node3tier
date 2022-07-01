@@ -42,9 +42,9 @@ steps:
   args:
   - -c
   - |
-    apk add jq &&
+    apk add jq && 
     gcloud container clusters get-credentials magnificent-pen-332209-gke --region us-central1 --project magnificent-pen-332209 &&
-    echo ip &&
+    echo ip && sleep 60 &&
     echo $(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip') &&
     cat ./ingress/ingress.yaml | sed s/NGINX_INGRESS_IP/$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip')/g > custom.yaml &&
     cat custom.yaml &&

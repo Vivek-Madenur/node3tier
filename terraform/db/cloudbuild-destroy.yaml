@@ -1,23 +1,23 @@
 ---
 steps:
-- name: 'hashicorp/terraform:1.0.0'
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - init
-- name: 'hashicorp/terraform:1.0.0'
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - validate
-- name: 'hashicorp/terraform:1.0.0'
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
   - plan
   - -input=false
   - -out=tfplan
-- name: 'hashicorp/terraform:1.0.0'
+- name: gcr.io/$PROJECT_ID/terraform
   dir: ${_DEPLOYMENT_FOLDER}
   args:
-  - apply
+  - destroy
   - -auto-approve
 # artifacts:
 #   objects:

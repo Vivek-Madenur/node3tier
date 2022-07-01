@@ -17,7 +17,7 @@ steps:
 - name: 'hashicorp/terraform:1.0.0'
   dir: ${_DEPLOYMENT_FOLDER}
   args:
-  - apply
+  - destroy
   - -auto-approve
 # artifacts:
 #   objects:
