@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
                 return res.status(500).send('error running request to ' + api_url);
             } else {
                 res.render('index', {
-                    title: '3tier App - 26 Jun 2pm',
+                    title: '3tier App - v1',
                     request_uuid: body[0].request_uuid,
                     img_link: input_img_link,
                     time: body[0].time
