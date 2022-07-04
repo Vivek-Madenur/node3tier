@@ -27,17 +27,17 @@ const logger = bunyan.createLogger({
 
 var pg = require('pg');
 const conString = {
-    // user: process.env.DBUSER,
-    // database: process.env.DB,
-    // password: process.env.DBPASS,
-    // host: process.env.DBHOST,
-    // port: process.env.DBPORT
+    user: process.env.DBUSER,
+    database: process.env.DB,
+    password: process.env.DBPASS,
+    host: process.env.DBHOST,
+    port: process.env.DBPORT
     
-    user: "user",
-    database: "postgres",
-    password: "user",
-    host: "34.132.36.146",
-    port: "5432"                
+    // user: "user",
+    // database: "postgres",
+    // password: "user",
+    // host: "34.132.36.146",
+    // port: "5432"                
 };
 
 // Routes
