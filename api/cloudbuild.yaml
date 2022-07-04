@@ -1,10 +1,10 @@
 steps:
-# - name: node
-#   entrypoint: npm
-#   args: ['--prefix', 'api', 'install']
-# - name: node
-#   entrypoint: npm
-#   args: ['--prefix', 'api', 'test']
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'api', 'install']
+- name: node
+  entrypoint: npm
+  args: ['--prefix', 'api', 'test']
 - id: Build Image
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', 
