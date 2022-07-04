@@ -21,4 +21,4 @@
 - DBHOST: Database hostname,
 - DBPORT: Database server listening port
 
-These variables need to be set
+These variables need to be set. dummy text.
