@@ -27,3 +27,9 @@ COPY /api .
 EXPOSE 3000
 
 CMD [ "npm", "start" ]
+
+
+# RUN apt-get update && apt-get install -y vim
+# RUN apt-get update && apt-get install --no-install-recommends -y \
+#  vim-tiny \
+#  && apt-get clean && rm -rf /var/lib/apt/lists/*
